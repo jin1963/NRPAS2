@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>KJC Referral + Auto-Stake (Old + New)</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/web3@1.10.4/dist/web3.min.js"></script>
+  <script src="config.js"></script>
+</head>
+<body>
+  <div class="wrap">
+    <h1>🎁 KJC Referral + Auto-Stake (รวมสัญญาเก่า/ใหม่)</h1>
+
+    <div class="topbar">
+      <button id="btnConnect">เชื่อมต่อกระเป๋า</button>
+      <span id="wallet" class="mono">❌ ยังไม่เชื่อมต่อ</span>
+      <div class="muted">
+        Old: <span id="caOld" class="mono">-</span> • New: <span id="caNew" class="mono">-</span>
+      </div>
+      <div class="muted">
+        สถานะ (New): <b id="sysState">—</b>
+        • APR: <b id="aprBps">—</b>
+        • เคลม Stake/รอบ: <b id="stakeInt">—</b>
+        • ล็อก: <b id="lockDur">—</b>
+        • เคลม Ref/รอบ: <b id="refInt">—</b>
+      </div>
+    </div>
+
+    <!-- Referrer -->
+    <section class="card">
+      <h2>👥 ผู้ผ่านแนะนำ (Referrer)</h2>
+      <div class="row">
+        <input id="refInput" placeholder="ใส่ Address ผู้อ้างอิง (0x…)" />
+        <button id="btnLockRef">บันทึก Referrer (สัญญาใหม่)</button>
+      </div>
+      <p class="muted">* สัญญาเก่าผูก Ref ตอนซื้อแพ็กเกจเท่านั้น ส่วนสัญญาใหม่มีปุ่มผูกได้</p>
+    </section>
+
+    <!-- My referral link -->
+    <section class="card">
+      <h2>🔗 ลิงก์แนะนำของคุณ</h2>
+      <div class="row">
+        <input id="myRefLink" class="mono" readonly value="(เชื่อมต่อเพื่อสร้างลิงก์)">
+        <button id="btnCopyMyRef">คัดลอกลิงก์</button>
+      </div>
+      <small class="muted">หากคัดลอกไม่ได้บนมือถือ ให้แตะช่องแล้วคัดลอกด้วยมือ</small>
+    </section>
+
+    <!-- Referral rewards -->
+    <section class="card">
+      <h2>💰 รางวัลอ้างอิง (USDT)</h2>
+      <div class="row">
+        <div>Old: <b id="refUsdtOld" class="mono">-</b> • เคลมได้อีก (old): <span id="refCdOld">-</span></div>
+        <button id="btnClaimRefOld">เคลมจากสัญญาเก่า</button>
+      </div>
+      <div class="row">
+        <div>New: <b id="refUsdtNew" class="mono">-</b> • เคลมได้อีก (new): <span id="refCdNew">-</span></div>
+        <button id="btnClaimRefNew">เคลมจากสัญญาใหม่</button>
+      </div>
+    </section>
+
+    <!-- Stakes -->
+    <section class="card">
+      <h2>📈 รายการ Stake (รวมเก่า+ใหม่)</h2>
+      <div id="totals" class="muted">รวม Principal: 0 KJC • รอเคลม: 0 KJC</div>
+      <div id="stakes">ยังไม่มีรายการ</div>
+    </section>
+
+    <div id="toast" class="toast" style="display:none"></div>
+  </div>
+
+  <script src="public.js"></script>
+</body>
+</html>
